@@ -4,15 +4,22 @@ Here is the main HTML where handlebars will render to
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-	  <title>Weightlifting</title>
-	  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-	  <link rel="stylesheet" type="text/css" href="css/reset.css">
-	  <link rel="stylesheet" type="text/css" href="css/style.css">
-	</head>
-	<body>
-		{{{ body }}}
-		<script type="text/javascript" src="../../public/app.js"></script>
-	</body>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Note Scraper</title>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	{{!--
+	<link rel="stylesheet" type="text/css" href="css/reset.css"> --}}
+	
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+	
+</head>
+
+<body>
+	<img src="/assets/images/cartoonimg.jpg" width="400px" id="cartoonmain">
+	{{{ body }}}
+	<script type="text/javascript" src="/assets/scripts/app.js"></script>
+</body>
+
 </HTML>

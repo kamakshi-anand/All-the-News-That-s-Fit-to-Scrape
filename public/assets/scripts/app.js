@@ -1,21 +1,22 @@
 // Grab the articles as a json
-$.getJSON("/headlines", function(data) {
-  // For each one
-  console.log("Data is "+data);
-  alert(data);
-  for (var i = 0; i < data.length; i++) {
-    // Display the apropos information on the page
-   $("#headlines").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link +"<br/>"+ data[i].summary +  "</p>" );
-  //  $("#headlinetable").append("<tr ><td>"+ data[i].title + "</td>" + 
-  //  "<td>"+ data[i].link + "</td>" +
-  //  "<td>"+ data[i].summary + "</td></tr>");
-  }
-});
+// $.getJSON("/headlines", function(data) {
+//   // For each one
+//   console.log("Data is "+data);
+//   alert(data);
+//   for (var i = 0; i < data.length; i++) {
+//     // Display the apropos information on the page
+//    $("#headlines").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link +"<br/>"+ data[i].summary +  "</p>" );
+//   //  $("#headlinetable").append("<tr ><td>"+ data[i].title + "</td>" + 
+//   //  "<td>"+ data[i].link + "</td>" +
+//   //  "<td>"+ data[i].summary + "</td></tr>");
+//   }
+// });
 
 
 // Whenever someone clicks a p tag
 $(document).on("click", "p", function() {
   // Empty the notes from the note section
+  alert("I am in");
   $("#comments").empty();
   // Save the id from the p tag
   var thisId = $(this).attr("data-id");
@@ -38,7 +39,9 @@ $(document).on("click", "p", function() {
       $("#comments").append("<button data-id='" + data._id + "' id='savecomment'>Save Comment</button>");
 
       // If there's a note in the article
+      console.log("data is "+ data.comment);
       if (data.comment) {
+        console.log("data comment "+ data.comment.body);
         // Place the title of the note in the title input**********************
         // $("#titleinput").val(data.comment.title);
         // Place the body of the note in the body textarea

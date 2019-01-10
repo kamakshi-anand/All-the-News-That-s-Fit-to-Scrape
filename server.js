@@ -17,14 +17,21 @@ var PORT = 3000;
 var app = express();
 
 // Configure middleware
+//******************************************************************handlebars */
+var exphbs = require('express-handlebars');
 
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
+//************************************************************************ */
 // Use morgan logger for logging requests
 app.use(logger("dev"));
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Make public a static folder
-app.use(express.static("public"));
+//app.use(express.static("/public"));
+app.use(express.static(process.cwd() + '/public'));
+
 
 // Connect to the Mongo DB
 // included "mongodb://localhost/mongoHeadlines"************************
@@ -76,6 +83,21 @@ app.get("/scrape", function (req, res) {
     // Send a message to the client
     res.send("Scrape Complete");
   });
+});
+
+app.get('/', function(req, res) {
+  db.Headline.find({})
+    .then(function (data) {
+      // If we were able to successfully find Articles, send them back to the client
+      var headlineObject = {
+        headlines: data
+      };
+      res.render('index', headlineObject);
+    })
+    .catch(function (err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
 });
 
 // Route for getting all Articles from the db

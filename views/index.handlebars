@@ -1,0 +1,24 @@
+<h1>Note Scraper</h1>
+<h2>All the News That's Fit to Scrape</h2>
+
+<main>
+    <div id="wrapper">
+        <div id="headlines"><b>Headlines:</b>
+            {{#each headlines}}
+            <p data-id={{this._id}}>
+                {{this.title}} + <br> + {{this.link}} <br />+ {{this.summary}}
+            </p>
+            {{/each}}
+        </div>
+        <div id="comments"><b>Comments:</b></div>
+
+        {{!-- <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
+            <button type="submit" class='burgerAvailable'> {{this.burger_name}}</button>
+        </form> --}}
+    </div>
+
+
+
+
+
+</main>
