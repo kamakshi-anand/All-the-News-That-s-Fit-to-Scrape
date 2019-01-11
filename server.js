@@ -31,11 +31,11 @@ app.use(express.json());
 // Make public a static folder
 //app.use(express.static("/public"));
 app.use(express.static(process.cwd() + '/public'));
-
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
 // Connect to the Mongo DB
 // included "mongodb://localhost/mongoHeadlines"************************
-mongoose.connect("mongodb://localhost/mongoHeadlines", { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Routes
 

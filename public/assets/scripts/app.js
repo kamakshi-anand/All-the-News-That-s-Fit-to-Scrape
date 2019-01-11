@@ -16,7 +16,7 @@
 // Whenever someone clicks a p tag
 $(document).on("click", "p", function() {
   // Empty the notes from the note section
-  alert("I am in");
+  //alert("I am in");
   $("#comments").empty();
   // Save the id from the p tag
   var thisId = $(this).attr("data-id");
@@ -37,6 +37,7 @@ $(document).on("click", "p", function() {
       $("#comments").append("<textarea id='bodyinput' name='body'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
       $("#comments").append("<button data-id='" + data._id + "' id='savecomment'>Save Comment</button>");
+      $("#comments").append("<button data-id='" + data._id + "' id='deletecomment'>Delete Comment</button>");
 
       // If there's a note in the article
       console.log("data is "+ data.comment);
@@ -78,3 +79,33 @@ $(document).on("click", "#savecomment", function() {
   // $("#titleinput").val("");
   $("#bodyinput").val("");
 });
+
+$(document).on("click", "#deletecomment", function() {
+  $("#bodyinput").val("");
+  // Grab the id associated with the article from the submit button
+  var thisId = $(this).attr("data-id");
+
+  // Run a POST request to change the note, using what's entered in the inputs
+  $.ajax({
+    method: "POST",
+    url: "/headlines/" + thisId,
+    data: {
+      // Value taken from title input**************
+      // title: $("#titleinput").val(),
+      // Value taken from note textarea
+      body: $("#bodyinput").val()
+    }
+  })
+    // With that done
+    .then(function(data) {
+      // Log the response
+      console.log(data);
+      // Empty the notes section
+      $("#comments").empty();
+    });
+
+  // Also, remove the values entered in the input and textarea for note entry
+  // $("#titleinput").val("");
+
+});
+

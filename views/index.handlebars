@@ -6,7 +6,7 @@
         <div id="headlines"><b>Headlines:</b>
             {{#each headlines}}
             <p data-id={{this._id}}>
-                {{this.title}} + <br> + {{this.link}} <br />+ {{this.summary}}
+                 <a href ="https://www.anandtech.com/{{this.link}}" target="_blank" >{{this.title}}</a> <br />+ {{this.summary}}
             </p>
             {{/each}}
         </div>
